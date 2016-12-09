@@ -1,0 +1,7 @@
+txn_type,fi,mcc,mcc_name,n_trans (number of transactions),amt_sale (Total amount of sales),amt_fee (Total amount of interchange fees),n_card (Total number of cards used),avg_sale (Average sales amount),avg_fee (Average interchange fee amount),trans_pc (Transactions per card),sale_pc (Dollar amount per card),fee_pc (Interchange fee per card)
+sig_debit,All Issuers,5311,Department Store,13500645,410057046.4,6841539.66,3516257,30.37,0.50675,3.839493245,116.61,1.94568
+sig_debit,My Financial Institution,5311,Department Store,84462,2174070.81,24905.26522,15271,25.74,0.29486,5.530875516,142.36,1.63088
+sig_debit,Issuer 1,5311,Department Store,98607,3534368.75,24944.9153,41206,35.84,0.25297,2.393025288,85.77,0.60537
+sig_debit,Issuer 2,5311,Department Store,1740167,51407298.63,991155.0007,436500,29.54,0.56957,3.986636884,117.77,2.27068
+sig_debit,Issuer CUs,5311,Department Store,2880427,91878232.95,1199707.591,654373,31.89,0.4165,4.401812116,140.4,1.83336
+sig_debit,All Issuers,5411,Grocery,13500645,410057046.4,6841539.66,3516257,30.37,0.50675,3.839493245,116.61,1.94568
