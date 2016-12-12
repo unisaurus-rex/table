@@ -4,7 +4,6 @@ export default function tableChart() {
 
 
     function buildTable(container, data) {
-        console.log(container)
 
         // append the header body
         var thead = container.append("thead");
@@ -36,7 +35,7 @@ export default function tableChart() {
             .text(function (d) { return d.value; });
 
     }
-
+    
     return buildTable;
 
 

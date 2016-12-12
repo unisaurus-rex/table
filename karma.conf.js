@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: 'src',
 
 
     // frameworks to use
@@ -21,7 +21,7 @@ module.exports = function(config) {
     files: [],
     
     proxies: {
-      '/jspm_packages': '/base/src/jspm_packages'
+      '/jspm_packages': '/base/jspm_packages'
     },
     
     jspm: {
@@ -29,15 +29,16 @@ module.exports = function(config) {
       // override config.js's path rule for '*'
       // note that base is how karma-jspm serves files, it adds a base folder that is the root of all folders/files server in the project
       paths: {
-        'scripts/*': 'base/src/scripts/*',
-        '*': 'base/*'
+        'scripts/*': '/base/scripts/*',
+        'spec/*': '/base/spec/*',
+        '*': '/base/*'
       },
       
       // files that may be imported by the test files (relative to root)
-      serveFiles: ['src/scripts/**/*.js'],
+      serveFiles: ['scripts/**/*.js'],
 
       // test files (relative to root)
-      loadFiles: ['src/spec/**/*.js']
+      loadFiles: ['spec/**/*.js']
     },
 
 
@@ -68,7 +69,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_ERROR,
 
 
     // enable / disable watching file and executing tests whenever any file changes

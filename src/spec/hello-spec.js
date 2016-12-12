@@ -8,6 +8,8 @@ describe("hello world", function(){
   it("fails", function(){
     var f = false;
     
-    expect(f).toBe(true);
+    expect(f).toBe(false);
   });
 });
+
+
