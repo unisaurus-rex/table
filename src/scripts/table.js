@@ -23,19 +23,21 @@ export default function tableChart() {
             .enter()
             .append("tr");
 
+        //mapping function from data ro td based on columns
+        function rowData(row) {
+            return data.columns.map(function (column) {
+                return { column: column, value: row[column] };
+            });
+        };
+
         // create a cell in each row for each column
         var cells = rows.selectAll("td")
-            .data(function (row) {
-                return data.columns.map(function (column) {
-                    return { column: column, value: row[column] };
-                });
-            })
+            .data(rowData)
             .enter()
             .append("td")
             .text(function (d) { return d.value; });
-
     }
-    
+
     return buildTable;
 
 

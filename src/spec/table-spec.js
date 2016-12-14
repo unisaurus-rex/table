@@ -31,7 +31,7 @@ describe("Test the table chart", function(){
 	});
 
 	function getTable() {
-		return d3.select('tr');
+		return d3.selectAll('tr');
 	}
 
 	function getRows() {
