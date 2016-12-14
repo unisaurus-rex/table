@@ -8,16 +8,27 @@ var table = d3.select("#drawtable")
     .append("table")
     .attr("class", "table");
 
+
+ table.append("thead");
+ table.append("tbody");
+
 //add import function to variable for use
 var drawTable = tableChart();
-console.log(drawTable);                         
+console.log(drawTable);
 
 //call data and then return table with data inside
-d3.csv("scripts/data/table-sample-data.csv", function (error, data) {
+d3.csv("scripts/data/table-sample-data2.csv", function (error, data) {
     console.log(data);
-    
-    drawTable(table, data);
-    
 
-
+    drawTable(d3.select("#drawtable"), data);
 });
+
+window.onclick = function swapData() {
+    d3.csv("scripts/data/table-sample-data.csv", function (error, data) {
+        console.log(data);
+
+        drawTable(table, data);
+    })
+};
+
+window.d3 = d3;
