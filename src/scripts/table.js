@@ -32,8 +32,9 @@ export default function tableChart() {
 
         // create a cell in each row for each column
         var cells = rows.selectAll("td")
-            .data(rowData)
-            .enter()
+            .data(rowData);
+        //Add transitions and update funtionality
+            cells.enter()
             .append("td")
             .text(function (d) { return d.value; });
     }
