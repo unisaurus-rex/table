@@ -3,87 +3,138 @@ import * as d3 from "d3";
 export default function tableChart() {
 
 
-    function buildTable(container, data) {
+  function buildTable(container, data) {
 
-        // declare variables for Table Head and Body
-        var thead = container.select("thead");
-        var tbody = container.select("tbody");
+    // declare variables for Table Head and Body
+    var thead = container.select("thead");
+    var tbody = container.select("tbody");
 
-        // append the header row
-        var thRow = thead.selectAll("tr")
-            .data([data.columns]);
+    // append the header row
+    var thRow = thead.selectAll("tr")
+        .data([data.columns]);
 
-        thRow
-            .enter()
-            .append("tr");
+    var thRowEnter = thRow.enter()
+        .append("tr");
+
+    // work with row enter selection
+    var thCellsEnter = thRowEnter.selectAll("th")
+        .data((d) => {return d;});
+
+    // update selection
+    thCellsEnter.text((d) => {return d;});
+
+    thCellsEnter.enter()
+      .append("th")
+      .text((d) => {return d;});
+
+    thCellsEnter.exit().remove();
 
 
-        var thCells = thRow.select("tr")
-            .data(data.columns);
+    // work with row update selection
+    var thCells = thRow.selectAll("th")
+        .data((d) => {return d;});
 
-        thCells
-            .enter()
-            .append("th")
-            .text(function (column) { return column; })
-            .style("opacity", 0)
-            .transition()
-            .style("opacity", 1)
-            .transition()
-            .delay(1500);
+    // update selection
+    thCells.text((d) => {return d;});
 
-        thCells
-            .append("th")
-            .text(function (column) { return column; })
-            .style("opacity", 0)
-            .transition()
-            .style("opacity", 1)
-            .transition()
-            .delay(1500);
+    thCells.enter()
+      .append("th")
+      .text((d) => {return d;});
 
-        // // create a row for each object in the data
-        // var rows = tbody.selectAll("tr")
-        //     .data(data);
+    thCells.exit().remove();
 
-        // rows
-        //     .enter()
-        //     .append("tr");
+    /*
+      var thCellsUpdate = thRow.selectAll("th")
+      .data((d) => {return d;});
 
-        // rows
-        //     .append("tr");
+      thCellsUpdate.text((d) => {return d;});
+      thCellsUpdate.exit().remove();
+      thCellsUpdate.enter()
+      .append("th")
+      .text((d) => {return d;});
+    */
 
-        // //mapping function from data ro td based on columns
-        // function rowData(row) {
-        //     return data.columns.map(function (column) {
-        //         return { column: column, value: row[column] };
-        //     });
-        // };
+    /*
+      var thCells = thRow.selectAll("th").data((d) => {return d;});
 
-        // // create a cell in each row for each column
-        // var cells = rows.selectAll("td")
-        //     .data(rowData);
-        // //Add data values and transitions to the enter funtionality
-        // cells.enter()
-        //     .append("td")
-        //     .text(function (d) { return d.value; })
-        //     .style("opacity", 0)
-        //     .transition()
-        //     .style("opacity", 1)
-        //     .transition()
-        //     .delay(1500);
+      // update selection
+      thCells.text((d) => {return d;});
 
-        // //Add data values and transitions to the update funtionality
-        // cells
-        //     .append("td")
-        //     .text(function (d) { return d.value; })
-        //     .style("opacity", 0)
-        //     .transition()
-        //     .delay(1500)
-        //     .style("opacity", 1)
-        //     .transition()
-        //     .delay(1500);
-    }
+      thCells.enter()
+      .append("th")
+      .text((d) => {return d;});
 
-    return buildTable;
+      thCells.exit().remove();
+    */
+
+    /*
+      var thCells = thRow.select("tr")
+      .data(data.columns);
+
+      thCells
+      .enter()
+      .append("th")
+      .text(function (column) { return column; })
+      .style("opacity", 0)
+      .transition()
+      .style("opacity", 1)
+      .transition()
+      .delay(1500);
+
+      thCells
+      .append("th")
+      .text(function (column) { return column; })
+      .style("opacity", 0)
+      .transition()
+      .style("opacity", 1)
+      .transition()
+      .delay(1500);
+    */
+
+    // // create a row for each object in the data
+    // var rows = tbody.selectAll("tr")
+    //     .data(data);
+
+    // rows
+    //     .enter()
+    //     .append("tr");
+
+    // rows
+    //     .append("tr");
+
+    // //mapping function from data ro td based on columns
+    // function rowData(row) {
+    //     return data.columns.map(function (column) {
+    //         return { column: column, value: row[column] };
+    //     });
+    // };
+
+    // // create a cell in each row for each column
+    // var cells = rows.selectAll("td")
+    //     .data(rowData);
+    // //Add data values and transitions to the enter funtionality
+    // cells.enter()
+    //     .append("td")
+    //     .text(function (d) { return d.value; })
+    //     .style("opacity", 0)
+    //     .transition()
+    //     .style("opacity", 1)
+    //     .transition()
+    //     .delay(1500);
+
+    // //Add data values and transitions to the update funtionality
+    // cells
+    //     .append("td")
+    //     .text(function (d) { return d.value; })
+    //     .style("opacity", 0)
+    //     .transition()
+    //     .delay(1500)
+    //     .style("opacity", 1)
+    //     .transition()
+    //     .delay(1500);
+  }
+
+  return buildTable;
 
 
 }
