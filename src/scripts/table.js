@@ -25,7 +25,11 @@ export default function tableChart() {
       .append("th")
       .merge(thCells)
     // using es6 anonymouse function notation in .text()
-      .text( (d) => {return d;} );
+      .text( (d) => {return d;} )
+      .style("opacity", 0)
+      .transition()
+      .delay(1500)
+      .style("opacity", 1);
 
     /***** create a row for each object in the data *****/
     // mapping function from data ro td based on columns
@@ -39,7 +43,7 @@ export default function tableChart() {
         .data(data);
 
     var bodyRows = bodyRowsUpdate.enter()
-        .append("tr")
+        .append("tr") 
         .merge(bodyRowsUpdate);
 
     var bodyCells = bodyRows.selectAll("td")
@@ -50,7 +54,11 @@ export default function tableChart() {
     bodyCells.enter()
       .append("td")
       .merge(bodyCells)
-      .text( (d) => {return d.value;} );
+      .text( (d) => {return d.value;} )
+      .style("opacity", 0)
+      .transition()
+      .delay(1500)
+      .style("opacity", 1);
   }
 
   return buildTable; 
