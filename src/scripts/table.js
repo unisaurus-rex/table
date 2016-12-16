@@ -3,87 +3,64 @@ import * as d3 from "d3";
 export default function tableChart() {
 
 
-    function buildTable(container, data) {
+  function buildTable(container, data) {
 
-        // declare variables for Table Head and Body
-        var thead = container.select("thead");
-        var tbody = container.select("tbody");
+    // declare variables for Table Head and Body
+    var thead = container.select("thead");
+    var tbody = container.select("tbody");
 
-        // append the header row
-        var thRow = thead.selectAll("tr")
-            .data([data.columns]);
+    /***** Add header elements ******/
+    var thRowUpdate = thead.selectAll("tr").data([data.columns]);
 
-        thRow
-            .enter()
-            .append("tr");
+    var thRow = thRowUpdate.enter()
+        .append("tr")
+        .merge(thRowUpdate);
 
+    // using es6 anonymouse function notation in .data()
+    var thCells = thRow.selectAll("th").data( (d) => {return d;} );
 
-        var thCells = thRow.select("tr")
-            .data(data.columns);
+    thCells.exit().remove();
 
-        thCells
-            .enter()
-            .append("th")
-            .text(function (column) { return column; })
-            .style("opacity", 0)
-            .transition()
-            .style("opacity", 1)
-            .transition()
-            .delay(1500);
+    thCells.enter()
+      .append("th")
+      .merge(thCells)
+    // using es6 anonymouse function notation in .text()
+      .text( (d) => {return d;} )
+      .style("opacity", 0)
+      .transition()
+      .delay(1500)
+      .style("opacity", 1);
 
-        thCells
-            .append("th")
-            .text(function (column) { return column; })
-            .style("opacity", 0)
-            .transition()
-            .style("opacity", 1)
-            .transition()
-            .delay(1500);
+    /***** create a row for each object in the data *****/
+    // mapping function from data ro td based on columns
+    // row is an object with keys = data.columns
+    // build array of objects for each key in row
+    function rowData(row) {
+      return data.columns.map(function (column) {
+        return { column: column, value: row[column] }; }); }
 
-        // // create a row for each object in the data
-        // var rows = tbody.selectAll("tr")
-        //     .data(data);
+    var bodyRowsUpdate = tbody.selectAll("tr")
+        .data(data);
 
-        // rows
-        //     .enter()
-        //     .append("tr");
+    var bodyRows = bodyRowsUpdate.enter()
+        .append("tr") 
+        .merge(bodyRowsUpdate);
 
-        // rows
-        //     .append("tr");
+    var bodyCells = bodyRows.selectAll("td")
+        .data(rowData);
 
-        // //mapping function from data ro td based on columns
-        // function rowData(row) {
-        //     return data.columns.map(function (column) {
-        //         return { column: column, value: row[column] };
-        //     });
-        // };
+    bodyCells.exit().remove();
 
-        // // create a cell in each row for each column
-        // var cells = rows.selectAll("td")
-        //     .data(rowData);
-        // //Add data values and transitions to the enter funtionality
-        // cells.enter()
-        //     .append("td")
-        //     .text(function (d) { return d.value; })
-        //     .style("opacity", 0)
-        //     .transition()
-        //     .style("opacity", 1)
-        //     .transition()
-        //     .delay(1500);
+    bodyCells.enter()
+      .append("td")
+      .merge(bodyCells)
+      .text( (d) => {return d.value;} )
+      .style("opacity", 0)
+      .transition()
+      .delay(1500)
+      .style("opacity", 1);
+  }
 
-        // //Add data values and transitions to the update funtionality
-        // cells
-        //     .append("td")
-        //     .text(function (d) { return d.value; })
-        //     .style("opacity", 0)
-        //     .transition()
-        //     .delay(1500)
-        //     .style("opacity", 1)
-        //     .transition()
-        //     .delay(1500);
-    }
+  return buildTable; 
 
-    return buildTable;
-
-
-}
+} 
