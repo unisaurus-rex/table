@@ -1,17 +1,26 @@
 import tableChart from 'table';
 import * as d3 from "d3";
 
-describe("Test the table chart", function(){
-	
-	beforeEach(function(){
-		var table = d3.select("#drawtable")
-    		.append("table")
-    		.attr("class", "table");
+   var draw = tableChart();	
 
-		var data = [{"c1": 1, "c2": 2, "c3": 3},{"c1": 5, "c2": 6, "c3": 7}];
-		data.columns = ["c1", "c2", "c3"];
-		var draw = tableChart();
+
+	var data = [{"c1": 1, "c2": 2, "c3": 3},{"c1": 5, "c2": 6, "c3": 7}];
+	data.columns = ["c1", "c2", "c3"];
+
+	
+
+describe("Test the table chart", function(){
+
+	beforeEach(function(){
+
+		var el = d3.select("html").append("body");
+
+		var table = d3.select("body")
+	    		.append("table")
+	    		.attr("class", "table");
+		
 		draw(table, data);
+
 	});
 
 	afterEach(function(){
@@ -22,19 +31,17 @@ describe("Test the table chart", function(){
 	describe('the table', function(){
 		it('should be created', function() {
 
-			expect(getTable()).not.toBeNull();
+
+			expect(d3.selectAll('tr')._groups[0][0]).not.toBeNull();
+			expect(d3.selectAll('tr')._groups[0][0]).toBeDefined();
+
+			
 		});
 
 		it('should build a table with one row', function(){
-			expect(getRows().length).toEqual(2);
+			console.log(d3.selectAll('tbody').selectAll('tr')._groups[0]);
+			expect(d3.select('tbody').selectAll('tr')._groups[0].length).toEqual(2);
 		});
 	});
 
-	function getTable() {
-		return d3.selectAll('tr');
-	}
-
-	function getRows() {
-		return d3.selectAll('tr')._groups[0];
-	}
 });
