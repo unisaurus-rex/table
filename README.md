@@ -1,6 +1,6 @@
 # table
 ---
-This repo uses d3 to create data tables. The table.js file returns a function of <code>tableChart(container, data)</code> that can be import and used to draw a table if given a container and data parameter for example:
+This repo uses d3 to create data tables. The table.js file returns a function of <code>tableChart(container, data)</code> that can be imported and used to draw a table if given a container and data parameter for example:
 
 <code>var drawTable = tableChart();
 drawTable(d3.select("#mycontainer"), data); </code>
