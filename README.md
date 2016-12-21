@@ -15,4 +15,4 @@ The table will automatically use the columns as headers and render out the data 
     var thing = thingUpdate.enter()
         .append("div")
         .merge(thingUpdate);
-        ```
+```
