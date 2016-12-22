@@ -10,8 +10,7 @@ System.config({
   },
   paths: {
     "github:*": "jspm_packages/github/*",
-    "npm:*": "jspm_packages/npm/*",
-    "*": "scripts/*"
+    "npm:*": "jspm_packages/npm/*"
   },
 
   map: {
@@ -22,6 +21,7 @@ System.config({
     "d3": "npm:d3@4.4.0",
     "font-awesome": "npm:font-awesome@4.6.3",
     "jquery": "npm:jquery@3.1.1",
+    "startup": "scripts/startup.js",
     "table": "scripts/table.js",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.4.1"

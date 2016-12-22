@@ -1,6 +1,6 @@
 import jquery from 'jquery';
 import bootstrap from 'bootstrap-sass';
-import tableChart from 'table.js';
+import tableChart from 'table';
 import * as d3 from "d3";
 
 //Create basic table with class of table for bootstrap
