@@ -15,10 +15,11 @@ The ```data``` parameter of the function returned by ```tableChart()``` should h
 .headers = [string, string,...] // strings formatted for display
 .columns = [string, string,...] // strings representing the keys in each object of the array
 ```
-Some things to note about the data structure
-1) The array itself should have two properties, ```columns``` and ```headers```
-2) The order of values in ```data.columns``` determines the display order
-3) ```data.headers``` should be the same as the values in ```data.columns``` but formatted for display (ie uppercased etc...)
+Some things to note about the data structure:
+
+1. The array itself should have two properties, ```columns``` and ```headers```
+2. The order of values in ```data.columns``` determines the display order
+3. ```data.headers``` should be the same as the values in ```data.columns``` but formatted for display (ie uppercased etc...)
 
 ###Notes:
 *If using a server to server your files locally, run the server from the <code> src </code> folder for development. 
