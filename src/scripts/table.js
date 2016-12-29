@@ -10,13 +10,14 @@ export default function tableChart() {
     var tbody = container.select("tbody");
 
     /***** Add header elements ******/
-    var thRowUpdate = thead.selectAll("tr").data([data.columns]);
+    var thRowUpdate = thead.selectAll("tr").data([data.headers]);
 
     var thRow = thRowUpdate.enter()
         .append("tr")
+    // merge with update selection, otherwise cells won't be drawn correctly
         .merge(thRowUpdate);
 
-    // using es6 anonymouse function notation in .data()
+    // using es6 anonymous function notation in .data()
     var thCells = thRow.selectAll("th").data( (d) => {return d;} );
 
     thCells.exit().remove();
@@ -24,7 +25,7 @@ export default function tableChart() {
     thCells.enter()
       .append("th")
       .merge(thCells)
-    // using es6 anonymouse function notation in .text()
+    // using es6 anonymous function notation in .text()
       .text( (d) => {return d;} )
       .style("opacity", 0)
       .transition()
@@ -32,22 +33,25 @@ export default function tableChart() {
       .style("opacity", 1);
 
     /***** create a row for each object in the data *****/
-    // mapping function from data ro td based on columns
+    // mapping function from data row to cells based on data.columns
+    // function will be passed to d3.data()
     // row is an object with keys = data.columns
-    // build array of objects for each key in row
-    function rowData(row) {
+    // build array of objects given a row object 
+    function parseRowData(rowObj) {
       return data.columns.map(function (column) {
-        return { column: column, value: row[column] }; }); }
+        return { column: column, value: rowObj[column] }; }); }
 
+    /***** Add Body Elements *****/
     var bodyRowsUpdate = tbody.selectAll("tr")
         .data(data);
 
     var bodyRows = bodyRowsUpdate.enter()
         .append("tr") 
+    // merge with update selection, otherwise cells won't be drawn correctly
         .merge(bodyRowsUpdate);
 
     var bodyCells = bodyRows.selectAll("td")
-        .data(rowData);
+        .data(parseRowData);
 
     bodyCells.exit().remove();
 

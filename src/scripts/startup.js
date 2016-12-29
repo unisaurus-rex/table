@@ -17,12 +17,14 @@ var drawTable = tableChart();
 
 //call data and then return table with data inside
 d3.csv("scripts/data/table-sample-data2.csv", function (error, data) {
+  data.headers = data.columns;
   console.log(data);
   drawTable(d3.select("#drawtable"), data);
 });
 
- function swapData() {
+function swapData() {
   d3.csv("scripts/data/table-sample-data.csv", function (error, data) {
+    data.headers = data.columns;
     console.log(data);
     drawTable(table, data);
   })
